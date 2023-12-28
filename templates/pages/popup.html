@@ -1,0 +1,33 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+    <div class="main-container">
+        <div class="popup-container">
+            <img src="https://img.freepik.com/premium-vector/vector-illustrationbusinessmen-sign-contractthere-s-big-handshake-background_253334-53.jpg" alt="">
+            <h1>{{res['heading']}} </h1>
+            <form action="" class="inner-container">
+
+                <label class="label" for="">{{res['description']}} </label>
+                    <br>
+                {% for key , value in res['data'].items()   %}
+                    <label class="label" for=""> <strong>{{key}} : </strong> {{value}}</label>
+                    <br>
+                {% endfor %}
+
+<!--                <label class="label" for="">{{res}}</label>-->
+            </form>
+            <div class="popup-button">
+                {% if res['btn1']['url'] != '' %}
+                    <a id="popup-button-1" href={{res['btn1']['url']}} >{{res['btn1']['text']}}</a>
+                {% endif %}
+
+                {% if res['btn2']['url'] != '' %}
+                    <a href={{res['btn2']['url']}} >{{res['btn2']['text']}}</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+ 
+{% endblock %}

@@ -1,0 +1,63 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+
+        <form class="profile" action="/update_userData/{{user[0]}}" method="post">
+            <div class="profile-img">
+
+                <h1>Update User Data</h1>
+            </div>
+            <div class="form-open">
+
+                <div class="account-details-form">
+                    <h5>User Name</h5>
+                    <input type="text"
+                        value="{{user[1]}}"
+                           name="username"
+                    >
+
+                </div>
+                <div class="account-details-form">
+                    <h5>Email</h5>
+                    <input type="email"
+                    value="{{user[2]}}"
+                           name="email"
+                    >
+
+                </div>
+
+                <div class="account-details-form">
+                    <h5>Address</h5>
+                    <input type="text"
+                    value="{{user[4]}}"
+                           name="address"
+                    >
+
+                </div>
+
+
+
+                <div class="account-details-form">
+                    <h5>Mobile no.</h5>
+                    <input type="text"
+                    value="{{user[5]}}"
+                           name="contactNumber"
+                    >
+
+                </div>
+
+
+
+            </div>
+            <div class="user-details-button">
+                <button
+                        class="button"
+                        type="submit"
+                        href="">Update Details</button>
+            </div>
+        </form>
+        <br>
+        <br>
+ 
+{% endblock %}

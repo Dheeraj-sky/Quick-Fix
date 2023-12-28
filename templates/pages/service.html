@@ -1,0 +1,160 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+
+       <form
+               class="account-open"
+               action="/service/ac"
+               method="post"
+       >
+            <h1>Enter Booking Details</h1>
+            <div class="form-open">
+
+                <div class="account-details-form">
+                    <h5>Service Type</h5>
+
+                    <input
+                            class="input"
+                            name="service"
+                            required="true"
+                          readonly="true"
+                          value="{{services['name']}}"
+                    />
+                </div>
+                <div class="account-details-form">
+                    <h5>Select sub-services<span>*</span></h5>
+                    <select
+                            id="subservice"
+                            name="subservice"
+                            required="true"
+
+                    >
+                         <option value="">Select option</option>
+                        {% for item in services['subServices']  %}
+                        <option
+                                value="{{ item }}"
+
+                        >{{item}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="account-details-form">
+                    <h5>Date<span>*</span></h5>
+                    <input
+                            type="datetime-local"
+                            class="input"
+                            id="date"
+                            name="date"
+                            required="true"
+                    />
+                </div>
+<!--                <div class="account-details-form">-->
+<!--                    <h5>Slot<span>*</span></h5>-->
+<!--                    <input-->
+<!--                            type="time"-->
+<!--                            class="input"-->
+<!--                            id="slot"-->
+<!--                            required="true"-->
+<!--                    >-->
+
+<!--                </div>-->
+                <div class="account-details-form">
+                    <h5>Address<span>*</span></h5>
+                    <input
+                            type="text"
+                            placeholder="Enter your Address"
+                            name="address"
+                            required="true"
+                    >
+
+                </div>
+                <div class="account-details-form">
+                    <h5>Vender selection<span>*</span</h5>
+                    <select
+                            name="vender"
+                            id="venders"
+                            onchange="changeAmount()"
+                            required="true"
+                    >
+                        <option value="">Select vender</option>
+                        <option value="Radioactive">Radioactive</option>
+                        <option value="Repair Group Co">Repair Group Co</option>
+                        <option value="Sumo Soft Private Limited">Sumo Soft Private Limited</option>
+                        <option value="The Waving Hunt">The Waving Hunt</option>
+                    </select>
+
+
+                </div>
+                <div class="account-details-form">
+                    <h5>Amount</h5>
+                    <input
+                            name="amount"
+                            class="input"
+                            id="amount"
+                            type="text"
+                            placeholder="Your service Amount"
+                            value='0'
+                            readOnly='true'
+
+                    >
+
+                </div>
+
+<!--                <div class="account-details-form">-->
+<!--                    <h5>Mobile no.<span>*</span></h5>-->
+<!--                    <input type="text" placeholder="Enter Mobile no.">-->
+
+<!--                </div>-->
+
+
+
+            </div>
+            <div class="account-button">
+                <button
+                        class="button"
+                        type="submit"
+                >Submit</button>
+            </div>
+        </form>
+        <script>
+<!--            const services = {-->
+<!--                '':0,-->
+<!--                Ac:500,-->
+<!--                Fridge:200,-->
+<!--                Washing:300,-->
+<!--                Tv:400-->
+<!--            }-->
+             const venders = {
+                '':0,
+                Radioactive:500,
+                'Repair Group Co':650,
+                'Sumo Soft Private Limited':460,
+                'The Waving Hunt':690
+            }
+        function changeAmount(){
+            var subservice = document.getElementById('subservice')
+            var vender = document.getElementById('venders')
+            var amount = document.getElementById('amount')
+            console.log('service', subservice.value)
+            console.log('vender', vender.value)
+            amount.value =  venders[vender.value]
+        }
+            var date = document.getElementById('date')
+            var dtToday = new Date();
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+             day = '0' + day.toString();
+            var maxDate = year + '-' + month + '-' + day + 'T08:30';
+<!--                        console.log(date.value)-->
+
+            date.min = maxDate
+        </script>
+
+{% endblock %}

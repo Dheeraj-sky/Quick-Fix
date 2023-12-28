@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+ 
+{% block body %}
+
+    <div class="img ">
+            <div class="caption anim">
+                <p class="anim" id="p1">Let's find you <br>
+                    the <strong>Best Services</strong>    </p>
+                <div class="innercaption">
+                    <p class="anim" id="p2">50+ Services with one <br>
+                        of the best prices</p>
+                    <p class="anim" id="p3"> Quick, easy & <br>hassle free</p>
+                </div>
+            </div>
+
+            <div class="image-slideshow">
+                <div class="image fade">
+                    <img src="https://as2.ftcdn.net/v2/jpg/02/89/40/95/1000_F_289409580_uaiHHPzCm44BNptPfOHmYilbKMFEuGPe.jpg"
+                        alt="Mountain Top">
+                </div>
+                <div class="image fade">
+                    <img src="https://as2.ftcdn.net/v2/jpg/03/02/18/39/1000_F_302183962_Rg7XPWbg1oxXH6u4Fqe7VfhkSIjFTVwk.jpg"
+                        alt="Palm Trees">
+                </div>
+                <div class="image fade">
+                    <img src="https://as1.ftcdn.net/v2/jpg/02/83/73/02/1000_F_283730288_8I5WqHhUqmPlAcj8tTPRQXzU6Wocuaxt.jpg"
+                        alt="Neon Sign">
+                </div>
+            </div>
+        </div>
+        <div class="mainbox">
+            <div class="box" id="box1">
+                <a href="service/ac"><img src="https://tse1.mm.bing.net/th/id/OIP.Sn1ApjwvjbdHOwNlno5vmgHaHa?w=512&h=512&rs=1&pid=ImgDetMain" alt="">
+                <h4>Ac & Appliances</h4>
+                </a>
+
+            </div>
+            <div class="box" id="box2">
+                <a href="service/house_cleaning"><img src="https://cdn0.iconfinder.com/data/icons/home-99/32/home-12-512.png" alt="">
+                <h4>House Cleaning</h4>
+                </a>
+            </div>
+            <div class="box" id="box3">
+                <a href="service/vihicle_service"><img src="https://thumbs.dreamstime.com/b/automotive-repair-icon-car-service-mechanic-tools-vector-illustration-252525401.jpg" alt="">
+                    <h4>Vehicle Services</h4>
+                </a>
+
+            </div>
+            <div class="box" id="box4">
+                <a href="service/pickup_service"><img src="https://images.prismic.io/justsunnies/16e75571-4469-46ae-a8f0-6a0db9e127f1_delivery-truck.png?auto=compress,format" alt="">
+                    <h4>Pickup/ <br>Drop</h4>
+                </a>
+
+            </div>
+
+
+
+        </div>
+        <div class="alsoview">
+            <a href="#">View all products</a href="#">
+
+        </div>
+
+        <div class="feed">
+            <h1>What Our Customers <br>
+                Are Saying</h1>
+            <div class="in-feed">
+                <div class="feedbox">
+
+                    <h4>Pragat Yadav</h4>
+                    <p id="feed-p">"</p>
+                    <p>"Thanking you very much for your  support for getting our policy quickly,
+                         I would appreciate your work."</p>
+
+
+                </div>
+                <div class="feedbox" >
+
+                    <h4>Urvashi Solanki</h4>
+                    <p id="feed-p">"</p>
+                    <p>"Thanks for correction done in time
+                         and really Appreciated....!! GOOD TO  HAVE INSURE-BANK..!! LIFE IS EASY WITH YOU..!!"</p>
+
+
+
+                </div>
+
+                <div class="feedbox" >
+
+                    <h4>Bhaskaar Lokhande</h4>
+                    <p  id="feed-p">"</p>
+                    <p>"I did not even need help from an  agent! This is very good!"</p>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="help">
+            <div class="helpcontent">
+                <h1>Have a question? <br>
+                    Here to help.
+                </h1>
+                <p>Our friendly customer support team is <br>
+                    your extended family. Speak your heart <br>
+                    out. They listen with undivided <br>
+                    attention to resolve your concerns. <br>
+                    Give us a call, request a callback or <br>
+                    drop us an email, we’re here to help.</p>
+
+                <div class="helpbutton">
+
+                    <button id="b1">General Enquiries <br>
+                        care@insurebank.com</button>
+                    <button id="b1"> Customer Sales Enquiries <br>
+                        1800 - 208 - 8787</button>
+                </div>
+
+            </div>
+            <div class="helpimg">
+                <img src="https://www.universalcpareview.com/wp-content/uploads/2022/09/Manti-Corporation-39.png"
+                    alt="">
+            </div>
+        </div>
+<div class="pay">
+            <h1>#Follow Us On
+
+            </h1>
+            <div class="payment-method">
+                <i class="fa-brands fa-twitter " id="logo1"></i>
+                <i class="fa-brands fa-facebook-f" id="logo2"></i>
+                <i class="fa-brands fa-google-plus-g" id="logo3"></i>
+                <i class="fa-brands fa-discord" id="logo4"></i>
+                <i class="fa-brands fa-instagram" id="logo5"></i>
+
+            </div>
+        </div>
+    <script>
+        let index = 0;
+        displayImages();
+        function displayImages() {
+            let i;
+            const images = document.getElementsByClassName("image");
+            for (i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+            index++;
+            if (index > images.length) {
+                index = 1;
+            }
+            images[index - 1].style.display = "block";
+            setTimeout(displayImages, 2000);
+        }
+    </script>
+{% endblock %}

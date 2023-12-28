@@ -1,0 +1,74 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+
+        <div class="heading">
+            <h1>All Users Data</h1>
+        </div>
+        <div class="pagi">
+            <form
+                    class="search"
+                    action="/searchUser"
+                    method="post"
+            >
+
+                <input
+                        name="searchParams"
+                        type="text"
+                        placeholder="Search Account"
+                        style="padding:20px;"
+                >
+                <button
+                        class="search-button"
+                        type="submit"
+                        style="padding:12px;"
+                >Search</button>
+                 {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="error" role="alert" style="color:red;">
+                                        {{message}}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                        {% endwith %}
+            </form>
+            <div class="pagi-button">
+
+                <a class="button" href="/userlist/0">Prev</a>
+                <h2>{{offset}}</h2>
+                <a class="button" href="/userlist/1">Next</a>
+            </div>
+        </div>
+        <div class="table">
+            <div class="table-body">
+
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for i in range(users|length) %}
+                    <tr>
+                        <td>{{users[i][0]}}</td>
+                        <td>{{users[i][1]}}</td>
+                        <td>{{users[i][2]}}</td>
+                        <td>{{users[i][4]}}</td>
+                        <td>{{users[i][5]}}</td>
+                        <td>
+                            <a class="button" href="/update_userData/{{users[i][0]}}" >Update</a>
+                            <a class="button" href="/delete_userData/{{users[i][0]}}" style="background-color: red;">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+ 
+{% endblock %}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('.static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+<!--            <h3>INSURE <br><span>BOOKING</span> </h3>-->
+            <h3>INSURE <i class="fa-solid fa-truck-fast"></i><br><span>BOOKING </span> </h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/account_details">Account</a></li>
+                <li><a href="/service_list/0">Bookings</a></li>
+            </ul>
+<!--            {{ auth }}-->
+            {% if  auth|length > 0 %}
+               <a class="nav-button" href="/logout">Log out   </a>
+            {% else %}
+                <a class="nav-button" href="/login">Log in   </a>
+            {% endif %}
+        </div>
+        {% block body %}
+
+
+        {% endblock %}
+        <div class="footer">
+            <h2>More Products</h2>
+            <!-- <h3>INSURE <br><span>PEOPLE</span> </h3> -->
+            <div class="footer-1">
+
+                <div class="in-footer">
+                    <ul>
+                        <h3>Ac & Appliances</h3>
+                        <li>Ac repair</li>
+                        <li>Fridge repair</li>
+                        <li>Tv repair</li>
+                        <li>Washing machine repair</li>
+                        <li>Fan repair</li>
+                        <li>Light repair</li>
+                        <li>Electric repair</li>
+
+                    </ul>
+                    <ul>
+                        <h3>House Cleaning</h3>
+                        <li>1-BHK</li>
+                        <li>2-BHK</li>
+                        <li>3-BHK</li>
+                        <li>4-BHK</li>
+                        <li>Bathroom Cleaning</li>
+                        <li>Kitchen Cleaning</li>
+                        <li>Balcony Cleaning</li>
+
+                    </ul>
+                    <ul>
+                        <h3>Vehicle Services</h3>
+                        <li>2-weeler</li>
+                        <li>3-weeler</li>
+                        <li>4-weeler</li>
+                        <li>Heavy Vehicles</li>
+                        <li>Special machine</li>
+
+
+                    </ul>
+                    <ul>
+                        <h3>Pickup/Drop</h3>
+                        <li>Vehicle Delivery</li>
+                        <li>Furniture Delivery</li>
+                        <li>Groceries Delivery</li>
+                        <li>Car Delivery</li>
+                        <li>Bike Delivery</li>
+                        <li>Bicycle Delivery</li>
+
+
+                    </ul>
+
+                </div>
+                <div class="in-footer2">
+                    <p>
+
+                        <br> © Copyright 2008-2023 insurebooking.com. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

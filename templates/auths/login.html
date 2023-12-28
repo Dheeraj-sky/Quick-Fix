@@ -1,0 +1,52 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+
+     <div class="form-box">
+            <div class="form-img">
+                <img src="https://img.freepik.com/premium-vector/finance-investment-financial-stock-trading-concept-flat-modern-vector-illustration_566886-8936.jpg"
+                    alt="">
+            </div>
+            <div class="form-content">
+                <div class="form">
+                    <h1>LOGIN</h1>
+                    <form action="/login"  method="POST">
+
+                        <p class="label">User Id</p>
+                        <input
+                                type="text"
+                                placeholder="Please enter your User Id"
+                                id="userId"
+                                required='true'
+                                name="userId"
+                        >
+<!--                        <p id="error-msg">Lorem ipsum dolor sit amet.</p>-->
+                        <p class="label">Password</p>
+                        <input
+                                type="password"
+                                placeholder="Please enter your Password"
+                                id="password"
+                                required ='true'
+                                name="password"
+                        >
+<!--                        <p id="error-msg">Lorem ipsum dolor sit amet.</p>-->
+
+                    <div class="login-button">
+
+                        <button
+                                type="submit"
+                                class="button"
+                        >Login</button>
+                    </div>
+                         </form>
+                    <div class="register">
+                        <p>Don't have an account <a href="register">register.</a></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

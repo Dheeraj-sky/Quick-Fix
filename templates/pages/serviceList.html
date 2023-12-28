@@ -1,0 +1,170 @@
+
+ {% extends 'base.html' %}
+
+{% block body %}
+
+        <div class="heading">
+            <h1>All Bookings</h1>
+        </div>
+
+        <div class="pagi">
+            <form class="form" method="post"
+            action="/searchService"
+            >
+
+                <input
+                        type="text"
+                        placeholder="Search Account"
+                        style="padding:20px;"
+                        name="searchParams"
+                >
+
+                <button
+                        class="search-button"
+                        style="padding:12px;"
+                        type="submit"
+                >Search</button>
+                        {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="error" role="alert" style="color:red;">
+                                        {{message}}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                        {% endwith %}
+            </form>
+            <div
+                    class="pagi-button"
+
+            >
+
+                <a
+                        id="prev"
+                        class="button"
+                        onclick=""
+                        href="/service_list/0"
+                >Prev</a>
+                <h2 id="currentPage">{{offset}}</h2>
+                <a
+                        id="next"
+                        class="button"
+                        onclick=""
+                        href="/service_list/1"
+                >Next</a>
+            </div>
+        </div>
+
+        <div class="table">
+
+            <div class="table-body" style="overflow-x: scroll;">
+
+                <table >
+                    <tr>
+                        <th>Service Id</th>
+                        {% if bookings[0]|length == 9 %}
+                            <th>User Name</th>
+                         {% endif %}
+                        <th>Service</th>
+                        <th>Sub Service</th>
+                        <th>Date/Slot</th>
+                        <th>Address</th>
+                        <th>Vender</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        {% if auth[1] == 'admin' %}
+                            <th>Actions</th>
+                         {% endif %}
+                    </tr>
+
+                    {% for i in range(bookings|length) %}
+                    <tr>
+
+                        <td>{{bookings[i][0]}}</td>
+                        {% if auth[1] == 'admin' %}
+                            <td>{{bookings[i][1]}}</td>
+                        {% else %}
+                            <td>{{bookings[i][1]}}</td>
+                        {% endif %}
+                        <td>{{bookings[i][2]}}</td>
+                        <td>{{bookings[i][3]}}</td>
+                        <td>{{bookings[i][4]}}</td>
+                        <td>{{bookings[i][5]}}</td>
+                        <td>{{bookings[i][6]}}</td>
+                        <td>{{bookings[i][7]}}</td>
+                        {% if auth[1] == 'admin' %}
+                            <td>
+                                <select
+                                        name=""
+                                        class="status"
+                                        style="border: 1px solid #00B2FF; background-color: transparent; padding: 10px;border-radius: 10px;"
+                                        onchange="onHandleChanged('{{bookings[i][0]}}' , {{i}})"
+                                >
+                                    <option value="{{bookings[i][8]}}">{{bookings[i][8]}}</option>
+
+                                    <option value="Pending">Pending</option>
+                                     <option value="Reject">Reject</option>
+                                    <option value="Accepted">Accepted</option>
+
+                                 </select>
+                            </td>
+                            {% else %}
+                             <td>
+                                    {{bookings[i][8]}}
+                                {% endif %}
+
+                         {% if auth[1] == 'admin' %}
+                            <td>
+<!--                                <a class="button" href="update_userData">Update</a>-->
+                                <a
+                                        class="button"
+                                        href="/service/delete/{{bookings[i][0]}}"
+                                        style="background-color: red;"
+
+
+                                >Delete</a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <script>
+            var next = document.getElementById('next')
+            var currentPage = document.getElementById('currentPage')
+            var prev = document.getElementById('prev')
+            var bookingList = parseInt({{ bookings|length }})
+            if(parseInt(currentPage.innerText) < 0)
+                prev.href = `/service_list/${parseInt(currentPage.innerText)-1}`
+            else
+                prev.href = `/service_list/0`
+
+            if(bookingList != 0)
+                next.href = `/service_list/${parseInt(currentPage.innerText)+1}`
+
+            function onHandleChanged(serviceId , i){
+                var status = document.getElementsByClassName('status')[i]
+                console.log(status.value)
+                console.log(serviceId)
+                console.log(i)
+
+                   fetch('http://127.0.0.1:5001/service/update',
+                    {
+                        "method": "POST",
+                        "headers": {"Content-Type": "application/json"},
+                        "body": JSON.stringify({'res':{
+                        'status':status.value,
+                        'service_id':serviceId
+                        }}),
+                    }).then(response => {
+                        console.log(response)
+                       return response.json()
+                    })
+                    .then(data => {
+                       console.log('sfsdsadf',data)
+                    })
+            }
+        </script>
+ 
+{% endblock %}
